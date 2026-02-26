@@ -52,25 +52,29 @@ typedef struct s_user_main
 t_user_input *table_link_input(char *str, t_user_input *node);
 t_user_input *new_node_input(char *str);
 t_env *new_node_env(char *str,char *str2);
-t_env *table_link_env(char *str,char *str2, t_env *node);
+t_env *table_link_env(char *name,char *object, t_env *node);
 
 void	free_table_env(t_env *node);
 void	free_table_input(t_user_input *node);
 
 char	**ft_split(char const *s, char c);
-t_user_input	*passer(char const *s, char c, char **env);
+t_user_input	*passer(char const *s, char c, t_env *env);
 t_user_input *init_type(t_user_input *user_input);
-bool ft_strcmp(char *str, char *str2);
-char *put_str_remove_quote(char *str, char c, char **env);
+bool ft_strcmp_bool(char *str, char *str2);
+char *put_str_remove_quote(char *str, char c, t_env *env);
 int count_char(char *str, char c);
 size_t	len_str(char *s, char c);
-char *find_env(char **env, char *str);
+char *find_env(t_env *env, char *str);
 int len_split(char *str);
 void ft_echo(t_user_input *user_input_table);
+int ft_strlen(char *str);
 
 char *export_name(char *str);
 char *export_object(char *str);
 void ft_export(t_user_main *user_input_table);
 t_env *ft_env(char **env);
+char **bubble_sort(char **env);
+int ft_strcmp(char *str, char *str2);
+char *put_str(char *str, char *str2, int *x);
 
 #endif

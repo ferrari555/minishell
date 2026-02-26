@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   passer.c                                           :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pukchayn <pukchayn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:59:09 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/20 16:16:59 by pukchayn         ###   ########.fr       */
+/*   Updated: 2026/02/26 19:15:38 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	len_str(char *s, char c)
 	return (i - 1);
 }
 
-t_user_input	*passer(char const *s, char c, char **env)
+t_user_input	*passer(char const *s, char c, t_env *env)
 {
 	t_user_input	*box;
 	size_t		i;

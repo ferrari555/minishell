@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linklist.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pukchayn <pukchayn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:49:22 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/20 03:44:21 by pukchayn         ###   ########.fr       */
+/*   Updated: 2026/02/26 22:07:02 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,55 @@ t_env *new_node_env(char *str,char *str2)
 	return (node);
 }
 
-t_env *table_link_env(char *str,char *str2, t_env *node)
+bool check_already_exists(char *name, t_env *node)
+{
+	t_env *tmp;
+
+	tmp = node;
+	if (node == NULL)
+		return (false);
+	while (tmp != NULL)	
+	{
+		if (ft_strcmp(tmp->name, name) == 0)
+			return (true);
+		tmp = tmp->next;
+	}
+	return (false);
+}
+
+t_env *replace_env(char *name,char *object, t_env *node)
 {
 	t_env *tmp;
 	
+	tmp = node;
+	while (tmp != NULL)	
+	{
+		if (ft_strcmp(tmp->name, name) == 0)
+		{
+			if (tmp->str != NULL)
+				free(tmp->str);
+			tmp->str = object;
+			return (node);
+		}
+		tmp = tmp->next;
+	}
+	return (node);
+}
+
+t_env *table_link_env(char *name,char *object, t_env *node)
+{
+	t_env *tmp;
+	
+	tmp = node;
 	if (node == NULL)
 	{
-		node = new_node_env(str, str2);
+		node = new_node_env(name, name);
 		return (node);
 	}
-	tmp = node;
+	if (check_already_exists(name, node) == true)
+		return (replace_env(name, object, node));
 	while (tmp->next != NULL)	
 		tmp = tmp->next;
-	tmp->next = new_node_env(str, str2);
+	tmp->next = new_node_env(name, object);
 	return (node);
 }

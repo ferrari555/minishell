@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pukchayn <pukchayn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 16:10:47 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/20 16:11:21 by pukchayn         ###   ########.fr       */
+/*   Updated: 2026/02/26 02:03:20 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,108 @@ char *export_object(char *str)
 	return (object);
 }
 
+int linklist_size(t_env *env)
+{
+	t_env *tmp;
+	int i;
+
+	i = 0;
+	tmp = env;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
+}
+
+int ft_strlen_env(char *str)
+{
+	int i;
+
+	i = 0;
+	if (str == NULL)
+		return (2);
+	else if (!str)
+		return (0);
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char *env_str(t_env *env)
+{
+	t_env *tmp;
+	char *str;
+	int x;
+
+	x = 0;
+	tmp = env;
+	str = malloc(ft_strlen(tmp->name) + ft_strlen_env(tmp->str) + 1);
+	str = put_str(tmp->name,str,&x);
+	str[x++] = '=';
+	if (tmp->str == NULL)
+	{
+		str[x++] = '\'';
+		str[x++] = '\'';
+		str[x] = '\0';
+		return (str);
+	}
+	str = put_str(tmp->str,str,&x);
+	str[x] = '\0';
+	return (str);
+}
+
+char **env_array(t_env *env)
+{
+	char **env_main;
+	t_env *tmp;
+	int size;
+	int i;
+	
+	tmp = env;
+	size = linklist_size(env);
+	i = 0;
+	env_main = malloc(sizeof(char *) * size + 1);
+	while (tmp != NULL)
+	{
+		env_main[i] = env_str(tmp);
+		tmp = tmp->next;
+		i++;
+	}
+	env_main[i] = NULL;
+	return (env_main);
+}
+
+void free_double_array(char **box)
+{
+	int i;
+
+	i = 0;
+	while (box[i] != NULL)
+	{
+		free(box[i]);
+		i++;
+	}
+	free(box);
+}
+
+void print_export(t_env *env)
+{
+	char **env_box;
+	int i;
+
+	i = 0;
+	env_box = env_array(env);
+	env_box = bubble_sort(env_box);
+	while (env_box[i] != NULL)
+	{
+		printf("%s\n", env_box[i]);
+		i++;
+	}
+	free_double_array(env_box);
+}
+
 void ft_export(t_user_main *user_input_table)
 {
 	char *name;
@@ -67,7 +169,7 @@ void ft_export(t_user_main *user_input_table)
 
 	tmp = user_input_table->user;
 	if (tmp->next == NULL)
-		return ;
+		return (print_export(user_input_table->env));
 	tmp = tmp->next;
 	while (tmp != NULL)
 	{

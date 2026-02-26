@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expansion_value.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pukchayn <pukchayn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 00:33:41 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/20 16:52:02 by pukchayn         ###   ########.fr       */
+/*   Updated: 2026/02/26 20:20:03 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool ft_strcmp_till_equal(char *str, char *str2)
-{
-	int i;
-	
-	i = 0;
-	if (str == NULL || str[0] == '\0' || !str)
-		return (0);
-	while (str[i] != '\0' && str[i] != '=')
-	{
-		if (str[i] != str2[i] || str[i] == '\0' || str2[i] == '\0')
-			return (false);
-		i++;
-	}
-	if (i != len_split(str2))
-		return (false);
-	return (true);
-}
 
 char *cut_value_env(char *env_str)
 {
@@ -47,16 +29,16 @@ char *cut_value_env(char *env_str)
 	return (NULL);
 }
 
-char *find_env(char **env, char *str)
+char *find_env(t_env *env, char *str)
 {
-	int i;
+	t_env *tmp;
 
-	i = 0;
-	while (env[i] != NULL)
+	tmp = env;
+	while (tmp != NULL)
 	{
-		if (ft_strcmp_till_equal(env[i], str) == true)
-			return (cut_value_env(env[i]));
-		i++;
+		if (ft_strcmp_bool(tmp->name, str) == true)
+			return (tmp->str);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }

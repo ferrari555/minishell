@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pukchayn <pukchayn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:33:25 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/20 17:02:32 by pukchayn         ###   ########.fr       */
+/*   Updated: 2026/02/26 00:57:30 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void ft_echo(t_user_input *user_input_table)
 	i = 0;
 	while (tmp != NULL)
 	{
-		if (i == 1 && ft_strcmp(tmp->str,"-n") == true)
+		if (i == 1 && ft_strcmp_bool(tmp->str,"-n") == true)
 		{
 			newline = false;
 			tmp = tmp->next;

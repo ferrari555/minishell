@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pukchayn <pukchayn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 15:59:20 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/20 16:33:02 by pukchayn         ###   ########.fr       */
+/*   Updated: 2026/02/26 00:57:30 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,39 @@
 
 t_input_user_type return_command_type(char *str)
 {
-	if (ft_strcmp(str,"echo") == true)
+	if (ft_strcmp_bool(str,"echo") == true)
 		return (T_COMMAND);
-	else if (ft_strcmp(str,"cd") == true)
+	else if (ft_strcmp_bool(str,"cd") == true)
 		return (T_COMMAND);
-	else if (ft_strcmp(str,"pwd") == true)
+	else if (ft_strcmp_bool(str,"pwd") == true)
 		return (T_COMMAND);
-	else if (ft_strcmp(str,"export") == true)
+	else if (ft_strcmp_bool(str,"export") == true)
 		return (T_COMMAND);
-	else if (ft_strcmp(str,"unset") == true)
+	else if (ft_strcmp_bool(str,"unset") == true)
 		return (T_COMMAND);
-	else if (ft_strcmp(str,"env") == true)
+	else if (ft_strcmp_bool(str,"env") == true)
 		return (T_COMMAND);
-	else if (ft_strcmp(str,"exit") == true)
+	else if (ft_strcmp_bool(str,"exit") == true)
 		return (T_COMMAND);
 	return (T_NONE);
 }
 
 t_input_user_type return_redir_type(char *str)
 {
-	if (ft_strcmp(str,">") == true)
+	if (ft_strcmp_bool(str,">") == true)
 		return (T_REDIR);
-	else if (ft_strcmp(str,"<") == true)
+	else if (ft_strcmp_bool(str,"<") == true)
 		return (T_REDIR);
-	else if (ft_strcmp(str,"<<") == true)
+	else if (ft_strcmp_bool(str,"<<") == true)
 		return (T_REDIR);
-	else if (ft_strcmp(str,">>") == true)
+	else if (ft_strcmp_bool(str,">>") == true)
 		return (T_REDIR);
 	return (T_NONE);
 }
 
 t_input_user_type return_other_type(char *str)
 {
-	if (ft_strcmp(str,"|") == true)
+	if (ft_strcmp_bool(str,"|") == true)
 		return (T_PIPE);
 	return (T_NONE);
 }
@@ -87,9 +87,9 @@ t_user_input *init_type(t_user_input *user_input)
 	tmp = user_input;
 	while (tmp != NULL)
 	{
-		printf("text: %s\n",tmp->str);
+		// printf("text: %s\n",tmp->str);
 		tmp->type = return_type(tmp->str, i);
-		printf("%d\n", tmp->type);
+		// printf("%d\n", tmp->type);
 		tmp = tmp->next;
 		i = 1;
 	}

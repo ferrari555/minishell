@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pukchayn <pukchayn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 23:35:22 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/20 16:30:35 by pukchayn         ###   ########.fr       */
+/*   Updated: 2026/02/26 19:15:32 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int len_split(char *str)
 	return (i);
 }
 
-int str_quote_size(char *str, char **env)
+int str_quote_size(char *str, t_env *env)
 {
 	int i;
 	int len;
@@ -100,7 +100,7 @@ char *put_str(char *str, char *str2, int *x)
 	return (str2);
 }
 
-char *put_str_remove_quote(char *str, char c, char **env)
+char *put_str_remove_quote(char *str, char c, t_env *env)
 {
 	char *new_str;
 	size_t i;
