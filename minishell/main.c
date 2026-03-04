@@ -6,7 +6,7 @@
 /*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:30:36 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/26 19:13:04 by ferrarinara      ###   ########.fr       */
+/*   Updated: 2026/03/01 17:01:39 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,18 @@ void test_print_list(t_user_main *user_input_table)
 	}
 }
 
-void execute(t_user_main *user_input_table)
+int execute(t_user_main *user_input_table)
 {
 	if (ft_strcmp_bool(user_input_table->user->str,"echo") == true)
 		ft_echo(user_input_table->user);
 	else if (ft_strcmp_bool(user_input_table->user->str,"export") == true)
 		ft_export(user_input_table);
+	else if (ft_strcmp_bool(user_input_table->user->str,"exit") == true)
+	{
+		printf("exit\n");
+		return (1);
+	}
+	return (0);
 }
 
 void print_array(char **box)
@@ -87,13 +93,9 @@ int main(int ac, char **ag, char **env)
 		user_input_table->user = passer(user_input,' ',user_input_table->env);
 		if (user_input_table == NULL)
 			free(user_input);
-		if (ft_strcmp_bool(user_input_table->user->str,"exit") == true)
-		{
-			printf("exit\n");
-			break;
-		}
 		init_type(user_input_table->user);
-		execute(user_input_table);
+		if (execute(user_input_table) == 1)
+			break;
 		add_history(user_input);
 		free_table_input(user_input_table->user);
 		free(user_input);

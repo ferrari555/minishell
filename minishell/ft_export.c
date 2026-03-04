@@ -6,7 +6,7 @@
 /*   By: ferrarinarangsiya <ferrarinarangsiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 16:10:47 by pukchayn          #+#    #+#             */
-/*   Updated: 2026/02/26 02:03:20 by ferrarinara      ###   ########.fr       */
+/*   Updated: 2026/03/01 16:39:25 by ferrarinara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char *env_str(t_env *env)
 
 	x = 0;
 	tmp = env;
-	str = malloc(ft_strlen(tmp->name) + ft_strlen_env(tmp->str) + 1);
+	str = malloc(ft_strlen(tmp->name) + ft_strlen_env(tmp->str) + 2);
 	str = put_str(tmp->name,str,&x);
 	str[x++] = '=';
 	if (tmp->str == NULL)
